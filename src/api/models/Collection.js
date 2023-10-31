@@ -24,6 +24,9 @@ Collection.init({
         type: Sequelize.STRING,
         allowNull: false
     },
+    acronym: {
+        type: Sequelize.STRING
+    },
     cards_number: {
         type: Sequelize.INTEGER,
     },
