@@ -27,9 +27,6 @@ Collection.init({
     acronym: {
         type: Sequelize.STRING
     },
-    cards_number: {
-        type: Sequelize.INTEGER,
-    },
     card_game_id: {
         type: Sequelize.INTEGER,
         references: {

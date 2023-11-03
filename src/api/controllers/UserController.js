@@ -31,7 +31,13 @@ module.exports = {
     try {
       const user = await UserService.findById(id)
 
-      return res.json(user)
+      return res.json({
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt
+      })
     } catch (err) {
       return res.json({ error: err.message })
     }
@@ -44,7 +50,13 @@ module.exports = {
     try {
       const user = await UserService.updateById({ id, username, email, password })
 
-      return res.json(user)
+      return res.json({
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt
+      })
     } catch (err) {
       return res.json({ error: err.message })
     }
@@ -67,7 +79,19 @@ module.exports = {
     try {
       const users = await UserService.findAll()
 
-      return res.json(users)
+      let formattedUsers = []
+      
+      users.forEach((user) => {
+        formattedUsers.push({
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          createdAt: user.createdAt,
+          updatedAt: user.updatedAt
+        })
+      })
+
+      return res.json(formattedUsers)
     } catch (err) {
       return res.json({ error: err.message })
     }
