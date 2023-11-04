@@ -1,4 +1,3 @@
-const { where } = require('sequelize')
 const User = require('../models/User')
 
 module.exports = {

@@ -3,6 +3,7 @@ const express = require('express')
 const UserController = require('./controllers/UserController')
 const CardGameController = require('./controllers/CardGameController')
 const CollectionController = require('./controllers/CollectionController')
+const CardController = require('./controllers/CardController')
 
 const routes = express.Router()
 
@@ -21,5 +22,7 @@ routes.get('/users/cardgames', CardGameController.findAll)
 
 routes.post('/user/:userId/cardgame/:cardGameId/collection/new', CollectionController.create)
 routes.get('/user/:userId/cardgame/:cardGameId/collection/:id', CollectionController.findById)
+
+routes.post('/user/:userId/card/new', CardController.create)
 
 module.exports = routes
