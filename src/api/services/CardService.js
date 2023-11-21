@@ -43,7 +43,32 @@ module.exports = {
       user_id: userId
     })
 
+    console.log(card)
+
     return card
+  },
+
+  async findAll() {
+    const cards = await Card.findAll()
+
+    if(!cards) throw new Error('Nenhum card encontrado')
+
+    return cards
+  },
+
+  async removeById({ id, userId }) {
+    const card = await Card.findOne({
+      where: {
+        id: id,
+        userId: userId
+      }
+    })
+
+    if(!card) {
+      throw new Error('Card not found')
+    }
+
+    await card.destroy()
   }
 
 }

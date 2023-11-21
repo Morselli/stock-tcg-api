@@ -24,5 +24,7 @@ routes.post('/user/:userId/cardgame/:cardGameId/collection/new', CollectionContr
 routes.get('/user/:userId/cardgame/:cardGameId/collection/:id', CollectionController.findById)
 
 routes.post('/user/:userId/card/new', CardController.create)
+routes.get('/users/cards', CardController.findAll)
+routes.delete('/user/:userId/card/:id', CardController.removeById)
 
 module.exports = routes

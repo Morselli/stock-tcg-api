@@ -8,9 +8,12 @@ CardGame.associations = (models) => {
   CardGame.belongsTo(models.users, {
     foreignKey: 'userId'
   }),
-    CardGame.hasMany(models.collections, {
-      foreignKey: 'card_game_id'
-    })
+  CardGame.hasMany(models.collections, {
+    foreignKey: 'card_game_id'
+  }),
+  CardGame.hasMany(models.cards, {
+    foreignKey: 'card_game_id'
+  })
 }
 
 CardGame.init({

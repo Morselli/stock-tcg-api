@@ -9,9 +9,12 @@ Collection.associations = (models) => {
   Collection.belongsTo(models.card_games, {
     foreignKey: 'card_game_id'
   }),
-    Collection.belongsTo(models.users, {
-      foreignKey: 'user_id'
-    })
+  Collection.belongsTo(models.users, {
+    foreignKey: 'user_id'
+  }),
+  Collection.hasMany(models.cards, {
+    foreignKey: 'collection_id'
+  })
 }
 
 Collection.init({
