@@ -95,6 +95,18 @@ module.exports = {
     } catch (err) {
       return res.json({ error: err.message })
     }
+  },
+
+  async login(req, res) {
+    const { email, password } = req.body
+
+    try {
+      const loggedUser = await UserService.login({ email, password })
+
+      return res.json(loggedUser)
+    } catch (err) {
+      return res.json({ error: err.message })
+    }
   }
 
 }

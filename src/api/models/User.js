@@ -17,7 +17,9 @@ User.init({
       isEmail: true
     }
   },
-  password: Sequelize.STRING
+  password: Sequelize.STRING,
+  createdAt: Sequelize.DATE,
+  updatedAt: Sequelize.DATE
 }, { sequelize, modelName: 'user' })
 
 sequelize.sync()

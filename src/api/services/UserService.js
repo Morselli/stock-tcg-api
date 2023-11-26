@@ -1,4 +1,6 @@
 const User = require('../models/User')
+const bcrypt = require('bcrypt')
+const { sign } = require('jsonwebtoken')
 
 module.exports = {
 
@@ -18,10 +20,12 @@ module.exports = {
       throw new Error('Já existe um usuário cadastrado com esse e-mail')
     }
 
+    const hashedPassword = await bcrypt.hash(password, 12)
+
     const user = await User.create({
       username,
       email,
-      password
+      password: hashedPassword
     })
 
     return user
@@ -95,5 +99,35 @@ module.exports = {
     }
 
     return users
+  },
+
+  async login({ email, password }) {
+    const user = await User.findOne({
+      where: {
+        email
+      }
+    })
+
+    if(!user) throw new Error('E-mail ou senha incorretos')
+
+    const matchedPassword = await bcrypt.compare(password, user.password)
+
+    if(!matchedPassword) throw new Error ('E-mail ou senha incorretos')
+
+    const token = sign({}, 'HS256', {
+      subject: user.id,
+      expiresIn: '1d'
+    })
+
+    const returnToken = {
+      token,
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email
+      }
+    }
+
+    return returnToken
   }
 }

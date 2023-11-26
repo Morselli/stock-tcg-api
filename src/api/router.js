@@ -12,6 +12,7 @@ routes.get('/user/:id', UserController.findById)
 routes.put('/user/:id', UserController.updateById)
 routes.delete('/user/:id', UserController.removeById)
 routes.get('/users', UserController.findAll)
+routes.post('/login', UserController.login)
 
 routes.post('/user/:userId/cardgame/new', CardGameController.create)
 routes.get('/user/:userId/cardgame/:id', CardGameController.findById)
